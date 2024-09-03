@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "504364713685",
+    "firebase_url": "https://falldetection-2b1dd-default-rtdb.firebaseio.com",
+    "project_id": "falldetection-2b1dd",
+    "storage_bucket": "falldetection-2b1dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504364713685:android:5e166165ff543b4cd7445c",
+        "android_client_info": {
+          "package_name": "com.example.vorviewadmin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcdMoOhiKd4jgzAbXhO5uxMkYlSUhJFfs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

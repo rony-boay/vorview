@@ -10,105 +10,117 @@ class SelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF191970), // Midnight blue for AppBar
+        title: Text('Roles', style: TextStyle(color: Colors.white)),
+      ),
       backgroundColor: Colors.white, // Set background to white
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Card(
-              color: const Color(0xFF191970), // Set card color to midnight blue
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              elevation: 8,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(15.0),
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ExploreProductScreen()),
-                  );
-                },
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
-                        Icons
-                            .supervised_user_circle, // Choose the icon you prefer
-                        color: Colors.white, // Set icon color to white
-                        size: 24, // Set the icon size
-                      ),
-                      SizedBox(width: 10), // Add spacing between icon and text
-                      Text(
-                        'User',
-                        style: TextStyle(
-                          color: Colors.white, // Set text color to white
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/vorvie.jpg', height: 100), // Logo at the top
+              SizedBox(height: 40),
+              Card(
+                color:
+                    const Color(0xFF191970), // Set card color to midnight blue
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
                 ),
-              ),
-            ),
-            const SizedBox(height: 30),
-            Card(
-              color: const Color(0xFF191970), // Set card color to midnight blue
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              elevation: 8,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(15.0),
-                onTap: () async {
-                  // Check if the user is blocked before navigating
-                  bool isBlocked = await _checkIfUserIsBlocked();
-                  if (isBlocked) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Blocked! Please contact admin.'),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                  } else {
+                elevation: 8,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(15.0),
+                  onTap: () {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const AddProductScreen()),
+                          builder: (context) => ExploreProductScreen()),
                     );
-                  }
-                },
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
-                        Icons.business, // Choose the icon you prefer
-                        color: Colors.white, // Set icon color to white
-                        size: 24, // Set the icon size
-                      ),
-                      SizedBox(width: 10), // Add spacing between icon and text
-                      Text(
-                        'Business Owner',
-                        style: TextStyle(
-                          color: Colors.white, // Set text color to white
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons
+                              .supervised_user_circle, // Choose the icon you prefer
+                          color: Colors.white, // Set icon color to white
+                          size: 24, // Set the icon size
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                            width: 10), // Add spacing between icon and text
+                        Text(
+                          'User',
+                          style: TextStyle(
+                            color: Colors.white, // Set text color to white
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 30),
+              Card(
+                color:
+                    const Color(0xFF191970), // Set card color to midnight blue
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                elevation: 8,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(15.0),
+                  onTap: () async {
+                    // Check if the user is blocked before navigating
+                    bool isBlocked = await _checkIfUserIsBlocked();
+                    if (isBlocked) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Blocked! Please contact admin.'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    } else {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddProductScreen()),
+                      );
+                    }
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.business, // Choose the icon you prefer
+                          color: Colors.white, // Set icon color to white
+                          size: 24, // Set the icon size
+                        ),
+                        SizedBox(
+                            width: 10), // Add spacing between icon and text
+                        Text(
+                          'Business Owner',
+                          style: TextStyle(
+                            color: Colors.white, // Set text color to white
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

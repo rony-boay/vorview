@@ -94,7 +94,7 @@ class AuthWrapper extends StatelessWidget {
             body: Center(child: CircularProgressIndicator()),
           );
         } else if (snapshot.hasData) {
-          return LoginScreen(); // Navigate to SelectionScreen if authenticated
+          return SelectionScreen(); // Navigate to SelectionScreen if authenticated
         } else {
           return LoginScreen(); // Navigate to LoginScreen if not authenticated
         }

@@ -48,9 +48,9 @@ class _SplashScreenState extends State<SplashScreen>
         child: FadeTransition(
           opacity: _animation!,
           child: Image.asset(
-            'assets/vorvie.jpg', // Replace with your logo asset
-            width: 150,
-            height: 150,
+            'assets/vorvie1.jpg', // Replace with your logo asset
+            width: 200,
+            height: 200,
           ),
         ),
       ),

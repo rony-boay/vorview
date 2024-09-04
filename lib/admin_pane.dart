@@ -59,6 +59,14 @@ class BusinessOwnerRequestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white, // Background set to white
+      appBar: AppBar(
+        backgroundColor: Color(0xFF191970), // Midnight blue for AppBar
+
+        title: Text(
+          'Business Request',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('business_owner_requests')
@@ -159,6 +167,14 @@ class ClaimReviewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white, // Background set to white
+      appBar: AppBar(
+        backgroundColor: Color(0xFF191970), // Midnight blue for AppBar
+
+        title: Text(
+          'Claimed Reviews',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: StreamBuilder<QuerySnapshot>(
@@ -325,7 +341,7 @@ class AdminManagementScreen extends StatelessWidget {
       backgroundColor: Colors.white, // Background set to white
       appBar: AppBar(
         title: Text(
-          'Admin Management',
+          'Admin Role Management',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Color(0xFF191970), // Midnight blue AppBar
@@ -351,6 +367,8 @@ class AdminManagementScreen extends StatelessWidget {
             itemCount: users.length,
             itemBuilder: (context, index) {
               final user = users[index];
+              final bool isAdmin = user['isAdmin'] ?? false;
+
               return Card(
                 color: Colors.white,
                 child: ListTile(
@@ -359,11 +377,11 @@ class AdminManagementScreen extends StatelessWidget {
                     style: TextStyle(color: Color(0xFF191970)),
                   ),
                   subtitle: Text(
-                    user['email'] ?? '',
+                    '${user['email'] ?? ''}\n${isAdmin ? 'Admin' : 'Simple User'}',
                     style: TextStyle(color: Color(0xFF191970)),
                   ),
                   trailing: Switch(
-                    value: user['isAdmin'] ?? false,
+                    value: isAdmin,
                     activeColor: Color(0xFF191970),
                     onChanged: (value) {
                       FirebaseFirestore.instance
@@ -381,3 +399,4 @@ class AdminManagementScreen extends StatelessWidget {
     );
   }
 }
+

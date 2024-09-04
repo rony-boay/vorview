@@ -35,7 +35,7 @@ class _ExploreProductScreenState extends State<ExploreProductScreen> {
                 // Logo
                 Image.asset(
                   'assets/vorvie.jpg', // Replace with your logo asset path
-                  height: 100, // Adjust the height as needed
+                  height: 200, // Adjust the height as needed
                 ),
                 SizedBox(height: 20),
                 // Search Bar
@@ -86,7 +86,8 @@ class _ExploreProductScreenState extends State<ExploreProductScreen> {
                 if (!snapshot.hasData) {
                   return Center(
                     child: CircularProgressIndicator(
-                      color: Color(0xFF191970), // Midnight blue loading indicator
+                      color:
+                          Color(0xFF191970), // Midnight blue loading indicator
                     ),
                   );
                 }
@@ -137,7 +138,8 @@ class _ExploreProductScreenState extends State<ExploreProductScreen> {
                               return IconButton(
                                 icon: Icon(
                                   Icons.favorite_border,
-                                  color: Color(0xFF191970), // Midnight blue icon
+                                  color:
+                                      Color(0xFF191970), // Midnight blue icon
                                 ),
                                 onPressed: () {
                                   _toggleFavorite(product.id);
@@ -147,13 +149,13 @@ class _ExploreProductScreenState extends State<ExploreProductScreen> {
                             bool isFavorite = snapshot.data!.exists;
                             return IconButton(
                               icon: Icon(
-                                isFavorite
-                                    ? Icons.favorite
-                                    : Icons.favorite_border,
-                                color: isFavorite
-                                    ? Colors.red
-                                    : Color(
-                                        0xFF191970)), // Red if favorite, otherwise midnight blue
+                                  isFavorite
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: isFavorite
+                                      ? Colors.red
+                                      : Color(
+                                          0xFF191970)), // Red if favorite, otherwise midnight blue
                               onPressed: () {
                                 _toggleFavorite(product.id);
                               },

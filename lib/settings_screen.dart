@@ -70,6 +70,7 @@ class SettingsScreen extends StatelessWidget {
                   return Container();
                 },
               ),
+            Text('Contact Admin: admin@gmail.com'),
           ],
         ),
       ),

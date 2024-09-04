@@ -353,24 +353,26 @@ class _AddProductScreenState extends State<AddProductScreen> {
             )
           : _buildApprovalForm(),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor:
-            Color(0xFF191970), // Midnight blue for bottom navigation
+        backgroundColor: Colors.white, // Background color for bottom navigation
         currentIndex: _selectedIndex,
         onTap: _onTabTapped,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.white),
+            icon: Icon(Icons.home),
             label: 'Products',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business, color: Colors.white),
+            icon: Icon(Icons.business),
             label: 'Services',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle, color: Colors.white),
+            icon: Icon(Icons.account_circle),
             label: 'Profile',
           ),
         ],
+        selectedItemColor:
+            Color(0xFF191970), // Midnight blue for active icon and label
+        unselectedItemColor: Colors.grey, // Grey for inactive icon and label
       ),
     );
   }
@@ -405,12 +407,12 @@ class _ServicesScreenState extends State<ServicesScreen> {
     return Scaffold(
       backgroundColor: Colors.white, // Set background color to white
       appBar: AppBar(
-        backgroundColor: Colors.white, // Set AppBar background color to white
+        backgroundColor:
+            Color(0xFF191970), // Set AppBar background color to white
         leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Color(0xFF191970), // Set icon color to midnight blue
-          ),
+          icon: Icon(Icons.arrow_back,
+              color: Colors.white), // Set icon color to midnight blue
+
           onPressed: () {
             Navigator.pop(context); // Navigate back to the previous screen
           },
@@ -423,7 +425,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/vorvie.jpg', height: 200),
+                Text('Service Screen'),
+                //    Image.asset('assets/vorvie.jpg', height: 200),
                 SizedBox(
                   width: 65,
                 )
@@ -521,17 +524,18 @@ class BusinessProfileScreen extends StatelessWidget {
     final user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
-      backgroundColor: Colors.white, // Set background color to white
+      backgroundColor: Colors.white, // White background color
       appBar: AppBar(
         title: Text('Business Profile'),
-        backgroundColor: Colors.white, // Set AppBar background color to white
+        backgroundColor:
+            Color(0xFF191970), // Midnight blue AppBar background color
         titleTextStyle: TextStyle(
-            color: Color(0xFF191970),
-            fontSize: 20), // Set title text color to midnight blue
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold), // White title text color
         actions: [
           IconButton(
-            icon: Icon(Icons.logout,
-                color: Color(0xFF191970)), // Set icon color to midnight blue
+            icon: Icon(Icons.logout, color: Colors.white), // White icon color
             onPressed: () async {
               showDialog(
                 context: context,
@@ -545,7 +549,7 @@ class BusinessProfileScreen extends StatelessWidget {
                           'Cancel',
                           style: TextStyle(
                               color: Color(
-                                  0xFF191970)), // Set button text color to midnight blue
+                                  0xFF191970)), // Midnight blue text color
                         ),
                         onPressed: () {
                           Navigator.of(context).pop(); // Close the dialog
@@ -581,156 +585,87 @@ class BusinessProfileScreen extends StatelessWidget {
           }
           final data = snapshot.data!.data() as Map<String, dynamic>?;
           if (data == null) {
-            return Center(child: Text('No profile data found.'));
+            return Center(
+              child: Text(
+                'No profile data found.',
+                style:
+                    TextStyle(color: Color(0xFF191970)), // Midnight blue text
+              ),
+            );
           }
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ListTile(
-                  title: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFF191970)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      '${data['firstName']} ${data['lastName']}',
-                      style: TextStyle(color: Color(0xFF191970)),
-                    ),
-                  ),
-                  subtitle: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFF191970)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      data['businessName'],
-                      style: TextStyle(color: Color(0xFF191970)),
-                    ),
-                  ),
-                ),
-                ListTile(
-                  title: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFF191970)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      'Email',
-                      style: TextStyle(color: Color(0xFF191970)),
-                    ),
-                  ),
-                  subtitle: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFF191970)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      data['email'],
-                      style: TextStyle(color: Color(0xFF191970)),
-                    ),
-                  ),
-                ),
-                ListTile(
-                  title: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFF191970)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      'Address',
-                      style: TextStyle(color: Color(0xFF191970)),
-                    ),
-                  ),
-                  subtitle: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFF191970)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      data['address'],
-                      style: TextStyle(color: Color(0xFF191970)),
-                    ),
-                  ),
-                ),
-                ListTile(
-                  title: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFF191970)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      'Gender',
-                      style: TextStyle(color: Color(0xFF191970)),
-                    ),
-                  ),
-                  subtitle: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFF191970)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      data['gender'],
-                      style: TextStyle(color: Color(0xFF191970)),
-                    ),
-                  ),
-                ),
-                ListTile(
-                  title: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFF191970)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      'Business Description',
-                      style: TextStyle(color: Color(0xFF191970)),
-                    ),
-                  ),
-                  subtitle: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFF191970)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      data['businessDescription'],
-                      style: TextStyle(color: Color(0xFF191970)),
-                    ),
-                  ),
-                ),
+                _buildProfileField(
+                    'Name', '${data['firstName']} ${data['lastName']}'),
+                _buildProfileField('Business Name', data['businessName']),
+                _buildProfileField('Email', data['email']),
+                _buildProfileField('Address', data['address']),
+                _buildProfileField('Gender', data['gender']),
+                _buildProfileField(
+                    'Business Description', data['businessDescription']),
                 SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => EditProfileScreen(
-                          profileData: data,
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => EditProfileScreen(
+                            profileData: data,
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  child: Text('Edit Profile',
-                      style: TextStyle(color: Colors.white)),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(
-                        0xFF191970), // Set button background color to midnight blue
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                    textStyle: TextStyle(fontSize: 16),
+                      );
+                    },
+                    child: Text('Edit Profile',
+                        style: TextStyle(color: Colors.white)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(
+                          0xFF191970), // Midnight blue button background color
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                      textStyle: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ),
               ],
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildProfileField(String title, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+                color: Color(0xFF191970),
+                fontWeight: FontWeight.bold,
+                fontSize: 16), // Midnight blue title text
+          ),
+          SizedBox(height: 4),
+          Container(
+            padding: EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xFF191970)),
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.white, // White background for fields
+            ),
+            child: Text(
+              value,
+              style: TextStyle(
+                  color: Color(0xFF191970),
+                  fontSize: 14), // Midnight blue value text
+            ),
+          ),
+        ],
       ),
     );
   }

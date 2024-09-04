@@ -11,6 +11,16 @@ class FavoriteProductsScreen extends StatelessWidget {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF191970), // White background for AppBar
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/vorvie.jpg', height: 210), // Logo at the top
+          ],
+        ),
+      ),
+
       backgroundColor: Colors.white, // White background color
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance

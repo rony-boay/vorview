@@ -18,6 +18,9 @@ import 'package:vorviewadmin/serviceNotifi.dart';
 import 'package:vorviewadmin/settings_screen.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:vorviewadmin/product_detail_screen.dart';
+import 'package:vorviewadmin/screens/collaboration_hub_screen.dart';
+import 'package:vorviewadmin/screens/ai_chat_assistant_screen.dart';
+import 'package:vorviewadmin/screens/smart_dashboard_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,6 +70,12 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(
               builder: (_) => ProductDetailScreen(productId: productId),
             );
+          case '/collaborationHub':
+            return MaterialPageRoute(builder: (_) => CollaborationHubScreen());
+          case '/aiAssistant':
+            return MaterialPageRoute(builder: (_) => AIChatAssistantScreen());
+          case '/smartDashboard':
+            return MaterialPageRoute(builder: (_) => SmartDashboardScreen());
           default:
             return MaterialPageRoute(builder: (_) => SplashScreen());
         }
@@ -116,9 +125,10 @@ class _BottomMenuScreenState extends State<BottomMenuScreen> {
   int _currentIndex = 0;
   int _notificationCount = 0;
 
-  final List<Widget> _children = [
+  List<Widget> get _children => [
     ViewProductScreen(searchQuery: ''),
     FavoriteProductsScreen(),
+    CollaborationHubScreen(),
     SettingsScreen(),
   ];
 
@@ -184,6 +194,18 @@ class _BottomMenuScreenState extends State<BottomMenuScreen> {
                 ),
             ],
           ),
+          IconButton(
+            icon: Icon(Icons.psychology, color: Color(0xFF191970)),
+            onPressed: () {
+              Navigator.pushNamed(context, '/aiAssistant');
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.dashboard, color: Color(0xFF191970)),
+            onPressed: () {
+              Navigator.pushNamed(context, '/smartDashboard');
+            },
+          ),
         ],
       ),
       body: _children[_currentIndex],
@@ -197,6 +219,7 @@ class _BottomMenuScreenState extends State<BottomMenuScreen> {
         backgroundColor: Colors.white, // White background for bottom nav
         selectedItemColor: Color(0xFF191970), // Midnight blue for selected item
         unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed, // Show all tabs
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.view_list,
@@ -209,8 +232,13 @@ class _BottomMenuScreenState extends State<BottomMenuScreen> {
             label: 'Favorites',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings,
+            icon: Icon(Icons.group_work,
                 color: _currentIndex == 2 ? Color(0xFF191970) : Colors.grey),
+            label: 'Collaborate',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings,
+                color: _currentIndex == 3 ? Color(0xFF191970) : Colors.grey),
             label: 'Settings',
           ),
         ],
